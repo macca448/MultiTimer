@@ -37,10 +37,10 @@ public:
 	};
 
 	// Set up counter time(hours, minutes, seconds), count mode and function to execute if count is completed.
-	void config(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds, CountType countType, timer_callback callback, timer_callback onComplete);
+	void config(uint8_t dd_t, uint8_t hh_t, uint8_t mm_t, uint8_t ss_t, CountType countType, timer_callback callback, timer_callback onComplete);
 
 	// Set up counter time(hours, minutes, seconds) for existing timer.
-	void setCounter(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds);
+	void setCounter(uint8_t dd_t, uint8_t hh_t, uint8_t mm_t, uint8_t ss_t);
 
 	// Returns timer's current days.
 	uint8_t getCurrentDays();
