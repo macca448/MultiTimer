@@ -9,7 +9,7 @@
 #include <WProgram.h>
 #endif
 
-extern bool global_blink;
+extern bool heartbeat;
 
 #define ONE_SECOND 1000UL
 #define MULTITIMER_MAX_DAYS 40
