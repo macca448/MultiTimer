@@ -1,5 +1,17 @@
-Countimer	KEYWORD1
+########################################################
+# keywords.txt
+# Syntax Coloring Map for Local Arduino Sketches
+# Edit and/or replace these lines as needed.
+########################################################
+# Datatypes (KEYWORD1)
+########################################################
+MultiTimer	KEYWORD1
+
+########################################################
+# Methods, Functions, and Globals (KEYWORD2)
+########################################################
 timer_callback	KEYWORD2
+config  KEYWORD2
 setCounter	KEYWORD2
 getCurrentHours	KEYWORD2
 getCurrentMinutes	KEYWORD2
@@ -13,3 +25,13 @@ start	KEYWORD2
 stop	KEYWORD2
 pause	KEYWORD2
 restart	KEYWORD2
+
+########################################################
+# Constants (LITERAL1)
+########################################################
+USE_MILLIS LITERAL1
+USE_RTC LITERAL1
+FULL_DISPLAY LITERAL1
+HMS_DISPLAY LITERAL1
+AUTO_DISPLAY LITERAL1
+global_blink LITERAL1
