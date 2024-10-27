@@ -1,16 +1,28 @@
-# Countimer
+# MultiTimer
+Based on the work of [Inflop](https://github.com/inflop) and the [Countimer](https://github.com/inflop/Countimer) library 
 
-This is simple timer and counter Arduino library.  
-Offers three work modes:
+This is simple timer and counter Arduino library that sounts in one second interval
+Offers two work modes:
 
  * Count-up timer with call specified method when count is complete.
  * Count-down timer with call specified method when count is complete.
- * Calling any method at a specified time interval.
 
+
+The timer's clock source can be your controller's **`millis()`** function or by **`RTC`**
+
+ * **`run(USE_MILLIS, 0);`**
+ * **`run(USE_RTC, rtc.second());`**
+
+
+A global **`heartbeat`** is available to any or all timer's and is intended to give a visual indication that a timer is running
+
+The setup **`config()`** for a timer has changed and both callback's are specified here. Times can be zero or a default period
+ * void config(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds, CountType countType, timer_callback refreshClock, timer_callback onComplete);
 
 It allows you to start/pause, stop or restart timer.  
 The following are public methods for actions:
 
+ * void setCounter(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds);
  * void start()
  * void stop()
  * void pause()
@@ -19,38 +31,40 @@ The following are public methods for actions:
 
  Other methods:
 
+ * byte getCurrentDays()
  * byte getCurrentHours()
  * byte getCurrentMinutes()
  * byte getCurrentSeconds()
- * void setInterval()
- * String getCurrentTime()
+ * String getCurrentTime(uint8_t format)
  * bool isCounterCompleted()
  * bool isCounterRunning()
  * bool isStopped()
 
+Three formatted **`getCurrentTime()`** displays are available
+
+ * FULL_DISPLAY - **`00 00:00:00`**
+ * HMS_DISPLAY  - **`00:00:00`**
+ * AUTO_DISPLAY - **`a00:00`** where 'a' is D, H or blank depending on current count
 
 
 And here's some sample code!
 
 ```c
-#include "Countimer.h"
+#include "MultiTimer.h"
 
-Countimer timer;
+MultiTimer timer;
 
 void setup() {
 	Serial.begin(9600);
 
     // Set up count down timer with 10s and call method onComplete() when timer is complete.
     // 00h:00m:10s
-	timer.setCounter(0, 0, 10, timer.COUNT_DOWN, onComplete);
-
-    // Print current time every 1s on serial port by calling method refreshClock().
-    timer.setInterval(refreshClock, 1000);
+	timer.config(0, 0, 0, 10, timer.COUNT_DOWN, refreshClock, onComplete);
 }
 
 void refreshClock() {
 	Serial.print("Current count time is: ");
-    Serial.println(timer.getCurrentTime());
+    	Serial.println(timer.getCurrentTime(AUTO_DISPLAY));
 }
 
 void onComplete() {
@@ -59,7 +73,7 @@ void onComplete() {
 
 void loop() {
 	// Run timer
-	timer.run();
+	timer.run(USE_MILLIS, 0);
 
     // Now timer is running and listening for actions.
     // If you want to start the timer, you have to call start() method.
