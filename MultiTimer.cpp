@@ -19,33 +19,33 @@ MultiTimer::~MultiTimer()
 {
 }
 
-void MultiTimer::config(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds, CountType countType, timer_callback callback, timer_callback onComplete)
+void MultiTimer::config(uint8_t dd_t, uint8_t hh_t, uint8_t mm_t, uint8_t ss_t, CountType countType, timer_callback callback, timer_callback onComplete)
 {
 	_callback = callback;
 	_onComplete = onComplete;
 	_countType = countType;
-	setCounter(days, hours, minutes, seconds);
+	setCounter(dd_t, hh_t, mm_t, ss_t);
 }
 
-void MultiTimer::setCounter(uint8_t days, uint8_t hours, uint8_t minutes, uint8_t seconds)
+void MultiTimer::setCounter(uint8_t dd_t, uint8_t hh_t, uint8_t mm_t, uint8_t ss_t)
 {
-	if (days > MULTITIMER_MAX_DAYS) {
-		days = MULTITIMER_MAX_DAYS;
+	if (dd_t > MULTITIMER_MAX_DAYS) {
+		dd_t = MULTITIMER_MAX_DAYS;
 	}
 	
-	if (hours > MULTITIMER_MAX_HOURS) {
-		hours = MULTITIMER_MAX_HOURS;
+	if (hh_t > MULTITIMER_MAX_HOURS) {
+		hh_t = MULTITIMER_MAX_HOURS;
 	}
 
-	if (minutes > MULTITIMER_MAX_MINUTES_SECONDS) {
-		minutes = MULTITIMER_MAX_MINUTES_SECONDS;
+	if (mm_t > MULTITIMER_MAX_MINUTES_SECONDS) {
+		mm_t = MULTITIMER_MAX_MINUTES_SECONDS;
 	}
 
-	if (seconds > MULTITIMER_MAX_MINUTES_SECONDS) {
-		seconds = MULTITIMER_MAX_MINUTES_SECONDS;
+	if (ss_t > MULTITIMER_MAX_MINUTES_SECONDS) {
+		ss_t = MULTITIMER_MAX_MINUTES_SECONDS;
 	}
 
-	_currentCountTime = (days * 86400L) + (hours * 3600L) + (minutes * 60L) + seconds;
+	_currentCountTime = (dd_t * 86400L) + (hh_t * 3600L) + (mm_t * 60L) + ss_t;
 	_countTime = _currentCountTime;
 
 	if (_countType == COUNT_UP)
