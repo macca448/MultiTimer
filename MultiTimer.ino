@@ -9,7 +9,6 @@
 
 //MultiTimer //tUp;
 MultiTimer tDown;
-//MultiTimer tNone;
 
 void setup()
 {
@@ -17,7 +16,7 @@ void setup()
 	pinMode(13, OUTPUT);
         
     // Count-up timer with 10s
-	////tUp.setCounter(1, 2, 1, 10, //tUp.COUNT_UP, //tUpComplete);
+	//tUp.config(0, 0, 0, 10, tUp.COUNT_UP, print_time1, tUpComplete);
     // Call print_time1() method every 1s.
 
     // Count-down timer with 21s
@@ -47,23 +46,19 @@ void loop()
 				//tUp.stop();
 				tDown.stop();
 				digitalWrite(13, LOW);
-				//tNone.stop();
 				break;
 			case 'R':
 				//tUp.restart();
 				tDown.restart();
-				//tNone.restart();
 				break;
 			case 'S':
 				//tUp.start();
 				tDown.start();
-				//tNone.start();
 				break;
 			case 'P':
 				//tUp.pause();
 				tDown.pause();
 				digitalWrite(13, LOW);
-				//tNone.pause();
 				break;
 			default:
 				break;
@@ -75,7 +70,7 @@ void print_time2()
 {
 	Serial.print("tDown: ");
 	Serial.println(tDown.getCurrentTime(AUTO_DISPLAY));
-	digitalWrite(13, global_blink);
+	digitalWrite(13, heartbeat);
 }
 
 void tDownComplete()
