@@ -2,6 +2,7 @@
 Based on the work of [Inflop](https://github.com/inflop) and the [Countimer](https://github.com/inflop/Countimer) library 
 
 This is simple timer and counter Arduino library that counts in seconds up to 41 days
+ 
 Offers two work modes:
 
  * Count-up timer with call specified method when count is complete.
