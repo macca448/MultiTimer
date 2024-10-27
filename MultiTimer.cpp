@@ -1,7 +1,7 @@
 #include "MultiTimer.h"
 #include "Arduino.h"
 
-bool global_blink = 0;
+bool heartbeat = 0;
 
 MultiTimer::MultiTimer()
 {
@@ -96,7 +96,7 @@ char* MultiTimer::getCurrentTime(uint8_t format)
 		}
 		else if(getCurrentHours() > 0)
 		{
-			sprintf(_formatted_time, " %02d:%02d", getCurrentHours(), getCurrentMinutes());
+			sprintf(_formatted_time, "H%02d:%02d", getCurrentHours(), getCurrentMinutes());
 		}
 		else
 		{
@@ -179,8 +179,8 @@ void MultiTimer::run(bool method, uint8_t sec)
 
 void MultiTimer::updateClock()
 {
-	global_blink = !global_blink;
-	
+	heartbeat = !heartbeat;
+
 	if (_countType == COUNT_DOWN)
 	{
 		countDown();
